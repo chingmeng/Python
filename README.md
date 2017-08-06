@@ -1,0 +1,2 @@
+# Python
+Learning, typing, developing
