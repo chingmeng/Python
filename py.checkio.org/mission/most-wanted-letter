@@ -1,0 +1,46 @@
+def checkio(text):
+
+    #replace this for solution
+    alphabet = "abcdefghijklmnopqrstuvwxyz"
+    record = {}
+    record2 = {}
+    record3 = {}
+    textlower = text.lower()
+    
+    for char in textlower:
+        if char in alphabet:
+            record[char] = textlower.count(char)
+    
+    print ("Record 1 : ", record) 
+    hcountstr = max(record,key=lambda i:record[i])
+    hcount = record[hcountstr]
+    
+    for b in record:
+        if b == hcountstr:
+            record2[b] = record[b]
+        elif b != hcountstr and record[b] == hcount: 
+            record2[b] = record[b]
+                
+    print ("Record 2 : ", record2)
+    #print (alphabet.index('a'))
+    
+    for x in record2:
+        record3[x] = alphabet.index(x)
+    
+    lpostr = min(record3,key=lambda i:record3[i])
+          
+    return lpostr
+
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert checkio("Hello World!") == "l", "Hello test"
+    assert checkio("How do you do?") == "o", "O is most wanted"
+    assert checkio("One") == "e", "All letter only once."
+    assert checkio("Oops!") == "o", "Don't forget about lower case."
+    assert checkio("AAaooo!!!!") == "a", "Only letters."
+    assert checkio("abe") == "a", "The First."
+    print("Start the long test")
+    assert checkio("a" * 9000 + "b" * 1000) == "a", "Long."
+    print("The local tests are done.")
+
+#print (checkio("Hello World!"))
