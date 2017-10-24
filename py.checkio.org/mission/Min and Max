@@ -1,0 +1,140 @@
+import types
+
+def max(*args, **kwargs):
+# if key = int, the maxmin function will find the sorted list based on integer (int), 
+# and find the max and min value for the list. 
+# Get value from kwargs (Keyed arguments), set default as None if key not found
+    key = kwargs.get("key", None) 
+    a = args
+    lst = []
+    
+    if key == None and isinstance(a[0],str):
+        #print ("If String and key == None")
+        for x in a:
+            lst += x
+        lst.sort()
+        return lst[len(lst)-1]
+    elif key == None and isinstance(a[0],(list,tuple,dict)):
+        #print ("If not string and key == None")
+        for x in a:
+            if len(a)!=1:
+                lst += [x]
+            else:
+                lst += x
+        lst.sort()
+        print (lst)
+        return lst[len(lst)-1]
+    elif key == None and isinstance(a[0],range):
+        #print ("If Range")
+        for x in a:
+            for z in x:
+                lst += [z]
+        #print(lst)
+        lst.sort()
+        return lst[len(lst)-1]
+    elif key == None and isinstance(a[0],types.GeneratorType):
+        lst = list(a[0])
+        lst.sort()
+        return lst[len(lst)-1]
+    elif key == None and not isinstance(a[0],list):  
+        if isinstance(a[0],object) and not isinstance(a[0],int):
+            #print("you in filter: ", a)
+            lst = list(a[0])
+            lst.sort()
+            return lst[len(lst)-1]  
+        else:
+            #print ("Input numbers, with key == None")
+            for x in a:
+                lst += [x]
+            lst.sort()
+            return lst[len(lst)-1]
+    elif key == int:
+        #print ("Key == int")
+        lst = [x for x in a]
+        lst.sort(key=key,reverse=False)
+        lastnumber = lst[len(lst)-2] 
+        max = round(lastnumber)
+        return lastnumber
+        #print ("Max: ", maxlist)
+    else:
+        if len(a)==1:
+           #print ("Key = 1")
+            lst = [z for x in a for z in x]
+            lst.sort(key=key)
+        else:
+            #print ("Key = 2")
+            lst = [x for x in a]
+            lst.sort(key=key)
+        return lst[len(lst)-1]
+
+def min(*args, **kwargs):
+#""" if key = int, the maxmin function will find the sorted list based on integer (int), 
+#and find the max and min value for the list. """
+#Get value from kwargs (Keyed arguments), set default as None if key not found
+    key = kwargs.get("key", None) 
+    a = args
+    lst = []
+    
+    if key == None and isinstance(a[0],str):
+        #print ("If String and key == None")
+        for x in a:
+            lst += x
+        lst.sort()
+        return lst[0]
+    elif key == None and isinstance(a[0],(list,tuple,dict)):
+        #print ("If not string and key == None")
+        for x in a:
+            if len(a)!=1:
+                lst += [x]
+            else:
+                lst += x
+        lst.sort()
+        return lst[0]
+    elif key == None and isinstance(a[0],range):
+        #print ("In range")
+        for x in a:
+            for z in x:
+                lst += [z]
+        lst.sort()
+        return lst[0]
+    elif key == None and isinstance(a[0],types.GeneratorType):
+        lst = list(a[0])
+        lst.sort()
+        return lst[0]
+    elif key == None and not isinstance(a[0],list):  
+        if isinstance(a[0],object) and not isinstance(a[0],int):
+            print("you in filter: ", a)
+            lst = list(a[0])
+            lst.sort()
+            return lst[0]  
+        else:
+            print ("Input numbers, with key == None")
+            for x in a:
+                lst += [x]
+            lst.sort()
+            return lst[0]
+    elif key == int:
+        #print ("Key == int")
+        lst = [x for x in a]
+        lst.sort(key=key,reverse=False)
+        return lst[0]
+    else:
+        if len(a)==1:
+            #print ("Key = 1")
+            lst = [z for x in a for z in x]
+            lst.sort(key=key)
+        else:
+            #print ("Key = 2")
+            lst = [x for x in a]
+            lst.sort(key=key)
+            print (lst)
+        return lst[0]
+
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert max(3, 2) == 3, "Simple case max"
+    assert min(3, 2) == 2, "Simple case min"
+    assert max([1, 2, 0, 3, 4]) == 4, "From a list"    
+    assert min("hello") == "e", "From string"
+    assert max(2.2, 5.6, 5.9, key=int) == 5.6, "Two maximal items"
+    assert min([[1, 2], [3, 4], [9, 0]], key=lambda x: x[1]) == [9, 0], "lambda key"
