@@ -1,0 +1,37 @@
+import turtle
+
+# f=open("turtle_help.txt")
+# f.write(dir(turtle))
+# f.close()
+
+# print (dir(turtle))
+# help(turtle)
+
+adam = turtle.Turtle()
+wn = turtle.Screen()
+
+adam.pensize(5)
+wn.bgcolor("Yellow")
+
+adam.fillcolor("red")
+
+for n in range(0,10):
+    print (adam.xcor(), adam.ycor())
+    adam.forward(100)
+    adam.left(45)
+else:
+    adam.getscreen()
+    adam.getpen
+    adam.heading()
+
+print("superman")
+
+
+adam.up
+# adam.forward(100)
+adam.down
+# adam.left(90)
+# adam.forward(100)
+
+
+wn.exitonclick()
