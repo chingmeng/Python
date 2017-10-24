@@ -1,0 +1,24 @@
+def checkio(first, second):
+    
+    a = first.split(",")
+    b = second.split(",")
+    c = []
+    e = ""
+    lst = [a,b]
+    
+    for x in a:
+        for y in b:
+            if x == y:
+                c += [x]
+    
+    d = sorted(c)
+    e = ",".join(d)
+    
+    return e
+                
+
+#These "asserts" using only for self-checking and not necessary for auto-testing
+if __name__ == '__main__':
+    assert checkio("hello,world", "hello,earth") == "hello", "Hello"
+    assert checkio("one,two,three", "four,five,six") == "", "Too different"
+    assert checkio("one,two,three", "four,five,one,two,six,three") == "one,three,two", "1 2 3"
