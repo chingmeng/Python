@@ -1,0 +1,25 @@
+from math import *
+
+def checkio(a, b, c):
+    
+# Using cosine rule (Note: cannot use same rule for all three angle, only can find two at most)
+# Reason: see proof of cosine rule
+    try:
+        C = round((180/pi)*acos((a**2 + b**2 - c**2)/(2*a*b)))
+        A = round((180/pi)*acos((c**2 + b**2 - a**2)/(2*c*b)))
+        B = round(180 - A - C)
+        if A != 0 and B != 0 and C != 0:
+            lst = [A, B, C]
+            lst.sort()
+        else:
+            lst = [0,0,0]
+    except ValueError:
+        lst = [0,0,0]
+    
+    return lst
+    
+#These "asserts" using only for self-checking and not necessary for auto-testing
+if __name__ == '__main__':
+    assert checkio(4, 4, 4) == [60, 60, 60], "All sides are equal"
+    assert checkio(3, 4, 5) == [37, 53, 90], "Egyptian triangle"
+    assert checkio(2, 2, 5) == [0, 0, 0], "It's can not be a triangle"
