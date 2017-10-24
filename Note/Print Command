@@ -1,0 +1,13 @@
+print (string.ascii_letters)
+print (string.ascii_lowercase)
+print (string.punctuation)
+print (string.printable + string.whitespace + string.ascii_letters)
+
+text = "Superman is the {}, he is super duper {}, he could lift over {:0.2f} tonne."
+print (text.format("Man","Strong",0.33333333))
+
+print("Sammy has {0:<4} red {1:^16}!".format(5, "balloons"))
+
+print("{:*^20s}".format("Sammy"))
+
+print ("%s is the man, %.2fd" % ("superman", 0.575757))
