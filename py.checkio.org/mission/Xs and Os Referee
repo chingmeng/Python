@@ -1,0 +1,56 @@
+def checkio(game_result):
+    record = ""
+    result = ""
+    Owin = False
+    Xwin = False
+    draw = False
+    
+    for n in game_result:
+        record += n
+        
+    win1 = record[0] + record[1] + record[2]
+    win2 = record[0] + record[3] + record[6]
+    win3 = record[1] + record[4] + record[7]
+    win4 = record[2] + record[5] + record[8]
+    win5 = record[0] + record[4] + record[8]
+    win6 = record[2] + record[4] + record[6]
+    win7 = record[3] + record[4] + record[5]
+    win8 = record[6] + record[7] + record[8]
+    winbox = [win1,win2,win3,win4,win5,win6,win7,win8]
+    
+    for n in winbox:
+        if n == "OOO":
+            Owin = Owin or True
+        elif n == "XXX":
+            Xwin = Xwin or True
+        else:
+            draw = draw or True
+    
+    if Owin == True:
+        result = "O"
+    elif Xwin == True:
+        result = "X"
+    else:
+        result = "D"
+        
+    return result
+
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert checkio([
+        "X.O",
+        "XX.",
+        "XOO"]) == "X", "Xs wins"
+    assert checkio([
+        "OO.",
+        "XOX",
+        "XOX"]) == "O", "Os wins"
+    assert checkio([
+        "OOX",
+        "XXO",
+        "OXX"]) == "D", "Draw"
+    assert checkio([
+        "O.X",
+        "XX.",
+        "XOO"]) == "X", "Xs wins again"
+
