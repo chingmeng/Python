@@ -638,3 +638,26 @@ def print_board(board):
         print " ".join(row)
 
 print_board(board)
+
+
+board = []
+
+def ocean_maker(lst):
+    for array in range(0,5):
+        lst.append(["O"]*5)
+    return lst
+    
+ocean_maker(board)
+
+def print_board(board):
+    for row in board:
+        print " ".join(row)
+
+print_board(board)
+from random import randint
+coin = randint(0, 1)
+dice = randint(1, 6)
+1.	In the above example, we first import the randint(low, high)function from the random module.
+2.	Then, we generate either zero or one and store it in coin.
+3.	Finally, we generate a number from one to six inclusive.
+from random import randint
